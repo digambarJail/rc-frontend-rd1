@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='text-3xl font-bold underline'>
         <h1>RC Frontend</h1>
       </div>
     </>
