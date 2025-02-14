@@ -1,0 +1,31 @@
+
+@font-face {
+    font-family: 'Avenixel';
+    src: url('Avenixel-Regular.ttf') format('truetype');
+    font-display: swap; /* Ensures text is displayed while the font loads */
+}
+
+body {
+    overflow: hidden; /* Prevent horizontal scrolling */
+    background: linear-gradient(180deg, #252242 0%, #190F2E 100%);
+    font-family: 'Avenixel', sans-serif !important; /* Custom font with !important */
+    background-size: cover; /* Ensures the gradient fills the screen */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    background-position: center; /* Centers the gradient */
+    height: 100vh; /* Covers the full viewport height */
+    width: 100vw; /* Covers the full viewport width */
+    margin: 0; /* Removes default margins */
+    display: flex; /* Flexbox for easy alignment */
+    flex-direction: column; /* Align content vertically */
+    justify-content: flex-start; /* Content starts at the top */
+    align-items: center; /* Centers content horizontally */
+    box-sizing: border-box; /* Includes padding and borders in the width/height */
+    color: #FFFFFF; /* Sets a default text color for better readability */
+}
+
+/* If necessary, enforce your font on all elements */
+* {
+    font-family: 'Avenixel', sans-serif !important;
+}
+
+

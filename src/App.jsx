@@ -1,12 +1,12 @@
 import './App.css'
+import Navbar from './Navbar/Navbar.jsx';
+import Layout from './Layout/Layout.jsx';
 
 function App() {
 
   return (
     <>
-      <div className='text-3xl font-bold underline'>
-        <h1>RC Frontend</h1>
-      </div>
+      
     </>
   )
 }
