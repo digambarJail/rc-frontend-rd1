@@ -16,12 +16,15 @@ import PrivateRoutes from "./privateRoutes/Privateroutes";
 import LandingPage from './Pages/LandingPage.jsx';
 import Layout from './Layout/Layout.jsx';
 import LoginPage from './Pages/LoginPage.jsx';
+import InstructionPage from './Pages/Instructions/InstructionPage.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/instructions" element={<InstructionPage />} />
+
 
       {/* <Route element={<PrivateRoutes/>} > */}
       {/* <Route path="/leaderboard" element={<LeaderBoard />} />
