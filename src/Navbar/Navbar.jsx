@@ -8,8 +8,8 @@ const Navbar = () => {
         <h1 className="text-[40px] text-[#FFD1E8]">RC</h1>
 
         <div className="nav-links text-[24px] bg--500 h-full w-[40%] flex justify-between items-center text-[#FFD1E8] ">
-          <Link>Instructions</Link>
-          <Link>Leaderboard</Link>
+          <Link to="/instructions" >Instructions</Link>
+          <Link to="/leaderboard" >Leaderboard</Link>
           <Button
             bg="#CA5F93"
             textColor="black"

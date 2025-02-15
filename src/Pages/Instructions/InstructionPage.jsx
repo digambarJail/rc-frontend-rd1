@@ -8,7 +8,7 @@ const InstructionPage = () => {
   const navigate = useNavigate(); // Initialize navigate function
 
   return (
-    <div className="container">
+    <div className="instr-container">
       <h2 className="main-title">INSTRUCTIONS</h2>
 
       {/* Card Container */}
