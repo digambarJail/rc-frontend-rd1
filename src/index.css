@@ -1,3 +1,58 @@
+@import 'pixel-retroui/dist/index.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Avenixel";
+    src: url(../fonts/Avenixel-Regular.ttf);
+  }
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    font-family: "Avenixel", sans-serif;
+}
+
+.custom-shadow3 {
+  text-shadow: 3px 2px 0px #101e34;
+}
+
+.svg-text-equivalent {
+  color: #CA5F93; /* Fill color */
+  -webkit-text-stroke: 10px #101e34; /* Stroke width and color */
+  paint-order: stroke fill; /* Ensure stroke is painted before the fill */
+  text-shadow: 1px 10px 0px #101e34; /* Shadow equivalent to custom-shadow1 */
+  text-align: center; /* Center-align text */
+  top: 50%;
+  left: 50%;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.custom-shadow2 {
+  text-shadow: 1px 2px 0px #101e34;
+}
+
+.svg-text-equivalent-forSmallText {
+  color: #FFD1E8; /* Fill color */
+  -webkit-text-stroke: 6px #4A1237; /* Stroke width and color */
+  paint-order: stroke fill; /* Ensure stroke is painted before the fill */
+  text-shadow: 
+    1px 1px 0px #101e34; /* Shadow equivalent to custom-shadow1 */
+   /* Center-align text */
+  top: 50%;
+  left: 50%;
+  white-space: nowrap; /* Prevent wrapping */
+}
