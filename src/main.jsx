@@ -17,6 +17,7 @@ import LandingPage from './Pages/LandingPage.jsx';
 import Layout from './Layout/Layout.jsx';
 import LoginPage from './Pages/LoginPage.jsx';
 import InstructionPage from './Pages/Instructions/InstructionPage.jsx';
+import Leaderboard from './Pages/Leaderboard/Leaderboard.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,8 @@ const router = createBrowserRouter(
       <Route index element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/instructions" element={<InstructionPage />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
+
 
 
       {/* <Route element={<PrivateRoutes/>} > */}
