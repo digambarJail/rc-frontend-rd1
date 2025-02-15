@@ -13,11 +13,11 @@ const Navbar = () => {
           <Button
             bg="#CA5F93"
             textColor="black"
-            borderColor="#1E3445"
-            shadow="#1E3445"
+            borderColor="#4A1237"
+            shadow="#4A1237"
             className="px-[20px] py-[2px] text-[16px] font-bold "
           >
-            <h1 className="custom-shadow2 svg-text-equivalent-forSmallText" >LOGIN</h1>
+            <h1 className="text-[#4A1237]" >LOGIN</h1>
           </Button>
         </div>
       </div>
