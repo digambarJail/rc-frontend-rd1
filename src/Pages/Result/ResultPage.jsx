@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import catImage from "../assets/cat.png";
+import catImage from "../../assets/cat.png";
 import { Card, Button } from 'pixel-retroui';
 import './ResultStyles.css';
 
@@ -74,7 +74,7 @@ const ResultPage = () => {
                     <div className="left-top">
                         <Card className="card1" borderColor="#4a1237">
                             <div className="catimg">
-                                {/* <img src={catImage} alt="Cat" /> */}
+                                <img src={catImage} alt="Cat" />
                             </div>
                             <div className="card1-right">
                                 <div className="user-info">
