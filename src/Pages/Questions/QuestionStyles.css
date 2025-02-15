@@ -1,0 +1,57 @@
+
+
+/* Apply outline to text */
+.text-outline {
+    font-size: 40px;
+    text-shadow:
+        2px 2px 0px #4a1237,
+        -2px -2px 0px #4a1237,
+        2px -2px 0px #4a1237,
+        -2px 2px 0px #4a1237;
+}
+
+custom-shadow3 {
+    text-shadow: 0px 8px 0px #101e34;
+}
+
+
+
+
+/* @media (max-width: 768px) {
+    .container {
+        
+        align-items: center;
+    }
+
+    .question-card {
+        order: 1;
+    }
+
+    .sidebar {
+        order: 2;
+        width: 100%;
+        text-align: center;
+    }
+
+    .input-container {
+        order: 3;
+        width: 100%;
+    }
+
+    .submit-btn {
+        order: 4;
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) and (max-height: 932px) {
+    body {
+        background-color: lightblue;
+    }
+
+    #question {
+        position: relative;
+    }
+
+    
+} */
