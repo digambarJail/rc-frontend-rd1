@@ -20,6 +20,7 @@ import InstructionPage from './Pages/Instructions/InstructionPage.jsx';
 import Leaderboard from './Pages/Leaderboard/Leaderboard.jsx';
 import ResultPage from './Pages/Result/ResultPage.jsx';
 import QuestionPage from './Pages/Questions/QuestionPage.jsx';
+import LifelinesPage from './Pages/Lifelines/LifelinesPage.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route path="/instructions" element={<InstructionPage />} />
       <Route path="/questions" element={<QuestionPage />} />
 
+      <Route path="/lifelines" element={<LifelinesPage />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="/result" element={<ResultPage />} />
       

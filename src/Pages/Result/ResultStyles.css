@@ -23,7 +23,7 @@ a {
     align-items: center;
     flex-wrap: wrap;
     letter-spacing: 0.1em;
-    font-size: 75px;
+    font-size: 60px;
     font-weight: 600;
     line-height: 70px;
     text-align: center;
@@ -132,7 +132,7 @@ a {
 }
 
 .userName{
-    font-size: 280%;
+    font-size: 30px;
     font-weight: 400;
     letter-spacing: 0.08em;
     text-align: left;
@@ -152,7 +152,7 @@ a {
 .Email{
     height: 10%;
     line-height: 175%;
-    font-size: 130%;
+    font-size: 20px;
     font-weight: 150;
     letter-spacing: 0.08em;
     text-align: left;

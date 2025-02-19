@@ -1,0 +1,238 @@
+
+.container {
+  height: 100vh;
+  width: 100%;
+  background-color: #151632;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    
+  }
+  
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 60px;
+  }
+  
+  .flex-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    margin: 20px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: rgba(57, 56, 103, 255);
+    color: black;
+    width: 280px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  .lifeline-img {
+    display: block;
+    height: 165px;
+    width: 155px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  
+  .lifeline-name {
+    display: block;
+    margin-bottom: 10px;
+    margin: auto;
+    color: #f0ddcf;
+  }
+  
+  .lifeline-desc {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 20px;
+    color: #f0ddcf;
+    text-shadow: #7c7187;
+  }
+  
+  .more-info {
+    padding: 3px;
+    background-color: rgba(202, 95, 147, 255);
+    color: rgba(213, 165, 191, 255);
+    align-items: center;
+    display: block;
+    margin: auto;
+    border-radius: 3px;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    font-size: 30px;
+    font-weight: 600;
+    color: #ffd1e8;
+    text-shadow: 2px 2px 0px #4a1237, -2px -2px 0px #4a1237, 2px -2px 0px #4a1237,
+      -2px 2px 0px #4a1237;
+    margin-left: 100px;
+    width: 155px;
+    height: 60px;
+    left: 35px;
+    gap: 0px;
+    border: 2px 0px 0px 0px;
+    opacity: 0px;
+  }
+  
+  .elements {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+  }
+  
+  .elements a {
+    color: #fdd0e7;
+    text-decoration: none;
+    font-size: 16px;
+    text-shadow: 2px 2px 0px #4a1237, -2px -2px 0px #4a1237, 2px -2px 0px #4a1237,
+      -2px 2px 0px #4a1237;
+    gap: 40px;
+  }
+  
+  .imG {
+    height: 70px;
+    width: 70px;
+  }
+  
+  .next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    border-radius: 8px;
+  }
+  
+  .next-button {
+    padding: 2px ;
+    width: 200px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #0d1234;
+  }
+  
+  /* Updated Popup Styling */
+  .popup {
+    max-width: 500px;
+    width: 90%;
+    background-color: #32295a;
+    color: #ffb6c1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: Avenixel-Regular, sans-serif;
+  }
+  
+  .popup .popup-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .popup .popup-icon {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+  }
+  
+  .popup .lifeline-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffead7;
+    margin: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+  .popup .lifeline-desc {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ffead7;
+  }
+  
+  .popup .close-button {
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #d46b91;
+    border: 1px solid #32295a;
+    cursor: pointer;
+    border-radius: 4px;
+    text-shadow: 1px 1px 0px #4a1237;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .popup .close-button:hover {
+    background-color: #e185a7;
+  }
+  
+  .popup .lifeline-img {
+    display: block;
+    height: 70px;
+    width: 70px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  
+  .logout {
+    border-radius: 8px;
+  }
+  
+  .Lifelines {
+    text-align: center;
+    font-size: 80px;
+    font-weight: bold;
+    color: #ffb6c1;
+    text-shadow: 2px 2px 0px #4a1237;
+    /* margin-top: 70px;
+    margin-bottom: 50px; */
+  }
+  
+  .popup .more-info-desc {
+    color: rgba(236, 172, 208, 255);
+  }
+  
+  .popup .test-box .img-box {
+    display: block;
+  }
