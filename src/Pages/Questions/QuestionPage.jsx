@@ -251,7 +251,7 @@ function Rashmi_Question() {
 
     const fetchQuestions = async () => {
         try {
-            const res = await fetch("import.meta.env.VITE_BASE_URL/api/start"); // Change this to your backend URL if necessary
+            const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/start`); // Change this to your backend URL if necessary
             const data = await res.json();
             console.log("DATA: ",data );
             setQuestion([data.questions]); // Store question in state
@@ -286,7 +286,7 @@ function Rashmi_Question() {
 
     const handleSubmit = async (question_id, attempt) => {
         try {
-            const res = await fetch("import.meta.env.VITE_BASE_URL/api/next", {
+            const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/next`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
