@@ -69,12 +69,12 @@ function LoginPage() {
               textColor="white"
               borderColor="#CA5F93"
               onChange={addData}
-              value={logData.email}
+              value={logData.username}
               className=" text-white outline-none w-[80%] max-md:w-[80vw] px-[1vw] py-[0vh] max-md:px-[6vw] "
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
+              id="username"
+              name="username"
+              type="username"
+              placeholder="Username"
             />
 
             {/* <input
