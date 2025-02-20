@@ -279,7 +279,7 @@ function Questionpage() {
         return;
       } else {
         const token = Cookies.get("jwt"); // Retrieve the token from cookies
-        let processedAnswer = answer.toUpperCase();
+        let processedAnswer = answer.toLowerCase();
 
         // Remove ALL spaces using a global regex
         processedAnswer = processedAnswer.replace(/\s+/g, "");
@@ -374,7 +374,7 @@ function Questionpage() {
               // questions.map((q) => (
               <div
                 key={questions.question_id}
-                className="flex flex-col justify-start items-center"
+                className="flex flex-col overflow-hidden justify-start items-center"
               >
                 <svg
                   viewBox="0 0 350 100"

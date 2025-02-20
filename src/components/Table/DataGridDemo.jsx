@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: "rank", headerName: "Rank", width: 100 },
+  { field: "rank", headerName: "Rank", width: 200 },
   { field: "username", headerName: "Username", width: 200 },
   { field: "marks", headerName: "Marks", width: 150 },
-  { field: "timeTaken", headerName: "Time Taken", width: 150 },
+  { field: "timeTaken", headerName: "Time Taken", width: 250 },
 ];
 
 export default function DataGridDemo({ rows = [] }) {
