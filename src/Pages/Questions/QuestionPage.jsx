@@ -230,10 +230,9 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Input, Button } from 'pixel-retroui';
 import 'pixel-retroui/dist/index.css';
-import './Rashmi_Question.css';
-import Lifelines from './Lifelines/Lifelines';
+import "./QuestionStyles.css";
+import Lifelines from '../Lifelines/LifelinesPage';
 
-import FullScreenEnforcer from "./Fullscreen/Fullscreen";
 
 function Rashmi_Question() {
     const [questions, setQuestion] = useState([123]);
@@ -324,7 +323,6 @@ function Rashmi_Question() {
 
     return (
         <>
-            <FullScreenEnforcer />
 
             <div className="flex flex-col lg:flex-row w-full mt-5 ml-0 p-0 justify-evenly items-center lg:items-center">
                 {/* Left Side: Question Card */}
