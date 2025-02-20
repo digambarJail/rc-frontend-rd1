@@ -124,7 +124,7 @@ const Lifelines = ({ currentQuestionId, answer }) => {
             }
 
             const response = await axios.post(endpoint, payload);
-            console.log(`${lifelineType} lifeline response:`, response.data);
+            // console.log(`${lifelineType} lifeline response:`, response.data);
         } catch (error) {
             console.error(`${lifelineType} lifeline error:`, error.response?.data || error.message);
         }

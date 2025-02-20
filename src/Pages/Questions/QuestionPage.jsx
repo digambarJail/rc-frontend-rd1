@@ -52,7 +52,7 @@ function Questionpage() {
           withCredentials: true,
         });
 
-        console.log("HERREEEEE",res.data);
+        // console.log("HERREEEEE",res.data);
 
         // setQuestion([res.data.question.question_id, res.data.question.is_junior, res.data.question.question_text]);
         setQuestion({
@@ -74,8 +74,8 @@ function Questionpage() {
         setStreak(res.data.streak);
 
 
-        console.log("Initial Marks: ", score);
-        console.log("Initial LIFELINES: ", lifeLines);
+        // console.log("Initial Marks: ", score);
+        // console.log("Initial LIFELINES: ", lifeLines);
 
         toast.info("New Question Loaded!", { position: "top-right", autoClose: 2000 });
 
@@ -163,7 +163,7 @@ function Questionpage() {
             withCredentials: true,
           }
         );
-        console.log(res1.data);
+        // console.log(res1.data);
         const newTimeLeft = Math.floor(res1.data.timeLeft / 1000); // Convert milliseconds to seconds
         setTimeLeft(newTimeLeft);
         setStreak(res1.data.streak);
@@ -191,7 +191,7 @@ function Questionpage() {
             withCredentials: true,
           }
         );
-        console.log(res2.data);
+        // console.log(res2.data);
         setQuestion({
           question_id: res2.data.nextQuestion.question_id,
           is_junior: res2.data.nextQuestion.is_junior,
@@ -225,7 +225,7 @@ function Questionpage() {
 
         // Remove ALL spaces using a global regex
         processedAnswer = processedAnswer.replace(/\s+/g, "");
-        console.log("PROCESSED ANSWER: ", processedAnswer);
+        // console.log("PROCESSED ANSWER: ", processedAnswer);
         if (!processedAnswer || processedAnswer == "") {
           // alert("PROVIDE VALID INPUT");
           toast.warning("Please provide a valid input!", { position: "top-center", autoClose: 2000 });
@@ -240,7 +240,7 @@ function Questionpage() {
                 withCredentials: true,
               }
             );
-            console.log(res3.data);
+            // console.log(res3.data);
             setQuestion({
               question_id: res3.data.question.question_id,
               is_junior: res3.data.question.is_junior,
@@ -272,7 +272,7 @@ function Questionpage() {
 
   const handleSubmit = async (answer, currentQuestionId) => {
     try {
-        console.log("ANSWERRR ",answer )
+        // console.log("ANSWERRR ",answer )
       if (!answer || answer.trim() === "") {
         toast.warning("Please provide a valid answer!", { position: "top-center", autoClose: 2000 });
         // alert("PROVIDE VALID INPUT");
@@ -283,7 +283,7 @@ function Questionpage() {
 
         // Remove ALL spaces using a global regex
         processedAnswer = processedAnswer.replace(/\s+/g, "");
-        console.log("PROCESSED ANSWER: ", processedAnswer);
+        // console.log("PROCESSED ANSWER: ", processedAnswer);
         if (!processedAnswer || processedAnswer == "") {
           // alert("PROVIDE VALID INPUT");
           toast.warning("Please provide a valid answer!", { position: "top-center", autoClose: 2000 });
@@ -313,7 +313,7 @@ function Questionpage() {
 
           }
           toast.info(res.data.message, { position: "top-right", autoClose: 2000 });
-          console.log("NEXT Response:", res.data);
+          // console.log("NEXT Response:", res.data);
           const newTimeLeft = Math.floor(res.data.timeLeft / 1000); // Convert milliseconds to seconds
           setTimeLeft(newTimeLeft);
 
@@ -334,8 +334,8 @@ function Questionpage() {
             skipStatus: res.data.skipStatus,
           });
           setAnswer();
-          console.log("TIME IN FRONTEND: ", timeLeft);
-          console.log("ANSWER IN FRONTEND: ", answer);
+          // console.log("TIME IN FRONTEND: ", timeLeft);
+          // console.log("ANSWER IN FRONTEND: ", answer);
 
         }
       }

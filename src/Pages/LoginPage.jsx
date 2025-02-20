@@ -40,7 +40,7 @@ function LoginPage() {
         { withCredentials: true }
       );
       toast.success("Login Successful!", { position: "top-center", autoClose: 2000 });
-      console.log(res.data);
+      // console.log(res.data);
 
       dispatch(authUser());
       navigate("/instructions"); // Navigate after successful login

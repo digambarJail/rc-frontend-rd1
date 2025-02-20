@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import RcBack from "../assets/RC_BG.png";
 
@@ -22,7 +22,6 @@ const Layout = () => {
     // ❌ Detect DevTools Open
     const checkDevTools = setInterval(() => {
       const before = new Date().getTime();
-      debugger; // Pauses script execution when DevTools is open
       const after = new Date().getTime();
       if (after - before > 100) {
         alert("Inspecting is disabled!");
@@ -35,6 +34,29 @@ const Layout = () => {
     };
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Set the initial state after mounting
+    setIsMobile(window.innerWidth < 600);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center bg-black text-white text-center p-4">
+        <h1 className="text-2xl font-bold">Contest can only be given on desktop</h1>
+      </div>
+    );
+  }
   return (
     <>
       <img className="object-cover z-[1] absolute h-full w-full opacity-[40%]" src={RcBack} alt="RC_BACKGROUND" />

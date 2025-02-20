@@ -23,7 +23,7 @@ const Leaderboard = () => {
           withCredentials: true,
         });
 
-        console.log("LEADERBOARD DATA:", res.data);
+        // console.log("LEADERBOARD DATA:", res.data);
         if(res.data.currentUser == null){
             setUserRank()
         }

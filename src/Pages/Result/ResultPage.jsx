@@ -42,9 +42,9 @@ const ResultPage = () => {
       const fetchUserData = async () => {
         try {
           const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/submit`,{withCredentials:true});
-          console.log("response",response);
+          // console.log("response",response);
           const data = response.data;
-          console.log("data",data)
+          // console.log("data",data)
           setUserData({
             username: data.currentUser.username,
             email: data.currentUser.email,

@@ -24,6 +24,7 @@ body{
     width: 100vw;
     background-color: #000;
     font-family: "Avenixel", sans-serif;
+    user-select: none;
 }
 
 .custom-shadow3 {

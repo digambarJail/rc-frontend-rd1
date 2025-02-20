@@ -29,7 +29,7 @@ function Lifelines() {
             });
 
             const data = await response.json();
-            console.log(data.message);
+            // console.log(data.message);
 
             // Update the lifelines state to disable the used lifeline
             setLifelines(prevLifelines =>
