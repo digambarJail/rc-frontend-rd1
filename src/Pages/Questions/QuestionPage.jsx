@@ -44,7 +44,7 @@ function Questionpage() {
       try {
         const token = Cookies.get("jwt"); // Retrieve the token from cookies
 
-        const res = await axios.get("{import.meta.env.VITE_BASE_URl}/api/start", {
+        const res = await axios.get("{import.meta.env.VITE_BASE_URL}/api/start", {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         });
@@ -147,7 +147,7 @@ function Questionpage() {
 
     if (lifelineType == "increase-timer-lifeline") {
       const res1 = await axios.get(
-        `${import.meta.env.VITE_BASE_URl}/api/${lifelineType}`,
+        `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
@@ -168,7 +168,7 @@ function Questionpage() {
 
     if (lifelineType == "skip-lifeline") {
       const res2 = await axios.post(
-        `${import.meta.env.VITE_BASE_URl}/api/${lifelineType}`,
+        `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
         { currentQuestionId },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -208,7 +208,7 @@ function Questionpage() {
           alert("PROVIDE VALID INPUT");
         } else {
           const res3 = await axios.post(
-            `${import.meta.env.VITE_BASE_URl}/api/${lifelineType}`,
+            `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
             { answer:processedAnswer, currentQuestionId },
             {
               headers: { Authorization: `Bearer ${token}` },
@@ -258,7 +258,7 @@ function Questionpage() {
           return;
         } else {
           const res = await axios.post(
-            `${import.meta.env.VITE_BASE_URl}/api/next`,
+            `${import.meta.env.VITE_BASE_URL}/api/next`,
             { answer: processedAnswer, currentQuestionId }, // Ensure question_id is sent correctly
             {
               headers: { Authorization: `Bearer ${token}` },
@@ -268,7 +268,7 @@ function Questionpage() {
           if(res.data.question === null){
             alert(res.data.message);
             const respo = await axios.get(
-                `${import.meta.env.VITE_BASE_URl}/api/submit`,
+                `${import.meta.env.VITE_BASE_URL}/api/submit`,
                 {
                   headers: { Authorization: `Bearer ${token}` },
                   withCredentials: true,

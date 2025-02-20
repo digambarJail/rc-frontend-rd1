@@ -34,7 +34,7 @@ function LoginPage() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URl}/auth/login`,
+        `${import.meta.env.VITE_BASE_URL}/auth/login`,
         logData,
         { withCredentials: true }
       );
