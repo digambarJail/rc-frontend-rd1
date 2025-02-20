@@ -5,11 +5,13 @@ import "./QuestionStyles.css";
 // import Lifelines from '../../components/Lifelines/Lifelines';
 import Cookies from "js-cookie";
 
-import FullScreenEnforcer from "../../components/Fullscreen/Fullscreen";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Questionpage() {
   const [questions, setQuestion] = useState({
@@ -33,6 +35,7 @@ function Questionpage() {
   const [timeLeft, setTimeLeft] = useState(null); // Track time left for the timer
 
   const navigate = useNavigate();
+  const [counter, setCounter] = useState(0);
 
   // const initialTime = Math.floor((apiResponse?.remainingTimeInMilliseconds || 0) / 1000);
 
@@ -44,12 +47,12 @@ function Questionpage() {
       try {
         const token = Cookies.get("jwt"); // Retrieve the token from cookies
 
-        const res = await axios.get("{import.meta.env.VITE_BASE_URL}/api/start", {
+        const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/start`, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         });
 
-        console.log(res.data);
+        console.log("HERREEEEE",res.data);
 
         // setQuestion([res.data.question.question_id, res.data.question.is_junior, res.data.question.question_text]);
         setQuestion({
@@ -57,6 +60,8 @@ function Questionpage() {
           is_junior: res.data.question.is_junior,
           question_text: res.data.question.question_text,
         });
+        setCounter(res.data.counter + 1);
+
 
         setLifeLines({
           doubleStatus: res.data.doubleStatus,
@@ -72,8 +77,11 @@ function Questionpage() {
         console.log("Initial Marks: ", score);
         console.log("Initial LIFELINES: ", lifeLines);
 
+        toast.info("New Question Loaded!", { position: "top-right", autoClose: 2000 });
+
         // console.log("TIMEEEE",initialTimeInSeconds);
       } catch (error) {
+        toast.error("Failed to load the question!", { position: "top-right", autoClose: 3000 });
         console.error("Error fetching the question", error);
       }
     };
@@ -87,7 +95,8 @@ function Questionpage() {
     // console.log("TIME LEFT:", timeLeft);
 
     if (timeLeft <= 0) {
-      alert("TEST ENDED !!!");
+      // alert("TEST ENDED !!!");
+      toast.error("Time is up! Redirecting to results...", { position: "top-center", autoClose: 2000 });
       navigate('/result')
       return;
     }
@@ -146,57 +155,70 @@ function Questionpage() {
     const token = Cookies.get("jwt");
 
     if (lifelineType == "increase-timer-lifeline") {
-      const res1 = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true,
-        }
-      );
-      console.log(res1.data);
-      const newTimeLeft = Math.floor(res1.data.timeLeft / 1000); // Convert milliseconds to seconds
-      setTimeLeft(newTimeLeft);
-      setStreak(res1.data.streak);
-
-      setLifeLines({
-        doubleStatus: res1.data.doubleStatus,
-        freezeStatus: res1.data.freezeStatus,
-        skipStatus: res1.data.skipStatus,
-      });
+      try{
+        const res1 = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
+        );
+        console.log(res1.data);
+        const newTimeLeft = Math.floor(res1.data.timeLeft / 1000); // Convert milliseconds to seconds
+        setTimeLeft(newTimeLeft);
+        setStreak(res1.data.streak);
+  
+        setLifeLines({
+          doubleStatus: res1.data.doubleStatus,
+          freezeStatus: res1.data.freezeStatus,
+          skipStatus: res1.data.skipStatus,
+        });
+        toast.success("Timer increased successfully!", { position: "top-right", autoClose: 2000 });
+      }
+      catch (error) {
+        toast.error("Failed to increase timer!", { position: "top-right", autoClose: 3000 });
+      }
 
     }
 
     if (lifelineType == "skip-lifeline") {
-      const res2 = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
-        { currentQuestionId },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true,
-        }
-      );
-      console.log(res2.data);
-      setQuestion({
-        question_id: res2.data.nextQuestion.question_id,
-        is_junior: res2.data.nextQuestion.is_junior,
-        question_text: res2.data.nextQuestion.question_text,
-      });
-      const newTimeLeft = Math.floor(res2.data.timeLeft / 1000); // Convert milliseconds to seconds
-      setTimeLeft(newTimeLeft);
-      setStreak(res2.data.streak);
-
-
-      setLifeLines({
-        doubleStatus: res2.data.doubleStatus,
-        freezeStatus: res2.data.freezeStatus,
-        skipStatus: res2.data.skipStatus,
-      });
-      setScore(res2.data.marks);
+      try{
+        const res2 = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
+          { currentQuestionId },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
+        );
+        console.log(res2.data);
+        setQuestion({
+          question_id: res2.data.nextQuestion.question_id,
+          is_junior: res2.data.nextQuestion.is_junior,
+          question_text: res2.data.nextQuestion.question_text,
+        });
+        const newTimeLeft = Math.floor(res2.data.timeLeft / 1000); // Convert milliseconds to seconds
+        setTimeLeft(newTimeLeft);
+        setStreak(res2.data.streak);
+  
+  
+        setLifeLines({
+          doubleStatus: res2.data.doubleStatus,
+          freezeStatus: res2.data.freezeStatus,
+          skipStatus: res2.data.skipStatus,
+        });
+        setScore(res2.data.marks);
+        toast.success("Question skipped successfully!", { position: "top-right", autoClose: 2000 });
+      }
+      catch (error) {
+        toast.error("Failed to skip question!", { position: "top-right", autoClose: 3000 });
+      }
     }
 
     if (lifelineType == "double-lifeline") {
       if (!answer || answer.trim() === "") {
-        alert("PROVIDE VALID INPUT");
+        // alert("PROVIDE VALID INPUT");
+        toast.warning("Please provide a valid input!", { position: "top-center", autoClose: 2000 });
       } else {
         const token = Cookies.get("jwt"); // Retrieve the token from cookies
         let processedAnswer = answer.toLowerCase();
@@ -205,33 +227,41 @@ function Questionpage() {
         processedAnswer = processedAnswer.replace(/\s+/g, "");
         console.log("PROCESSED ANSWER: ", processedAnswer);
         if (!processedAnswer || processedAnswer == "") {
-          alert("PROVIDE VALID INPUT");
+          // alert("PROVIDE VALID INPUT");
+          toast.warning("Please provide a valid input!", { position: "top-center", autoClose: 2000 });
         } else {
-          const res3 = await axios.post(
-            `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
-            { answer:processedAnswer, currentQuestionId },
-            {
-              headers: { Authorization: `Bearer ${token}` },
-              withCredentials: true,
-            }
-          );
-          console.log(res3.data);
-          setQuestion({
-            question_id: res3.data.question.question_id,
-            is_junior: res3.data.question.is_junior,
-            question_text: res3.data.question.question_text,
-          });
-          const newTimeLeft = Math.floor(res3.data.timeLeft / 1000); // Convert milliseconds to seconds
-          setTimeLeft(newTimeLeft);
-          setStreak(res3.data.streak);
-    
-          alert(res3.data.message);
-          setLifeLines({
-            doubleStatus: res3.data.doubleStatus,
-            freezeStatus: res3.data.freezeStatus,
-            skipStatus: res3.data.skipStatus,
-          });
-          setScore(res3.data.marks);
+        
+          try{
+            const res3 = await axios.post(
+              `${import.meta.env.VITE_BASE_URL}/api/${lifelineType}`,
+              { answer:processedAnswer, currentQuestionId },
+              {
+                headers: { Authorization: `Bearer ${token}` },
+                withCredentials: true,
+              }
+            );
+            console.log(res3.data);
+            setQuestion({
+              question_id: res3.data.question.question_id,
+              is_junior: res3.data.question.is_junior,
+              question_text: res3.data.question.question_text,
+            });
+            const newTimeLeft = Math.floor(res3.data.timeLeft / 1000); // Convert milliseconds to seconds
+            setTimeLeft(newTimeLeft);
+            setStreak(res3.data.streak);
+            toast.success(res3.data.message, { position: "top-center", autoClose: 2000 });
+      
+            // alert(res3.data.message);
+            setLifeLines({
+              doubleStatus: res3.data.doubleStatus,
+              freezeStatus: res3.data.freezeStatus,
+              skipStatus: res3.data.skipStatus,
+            });
+            setScore(res3.data.marks);
+          }
+          catch (error) {
+            toast.error("Failed to use double lifeline!", { position: "top-right", autoClose: 3000 });
+          }
 
         }
       }
@@ -244,17 +274,19 @@ function Questionpage() {
     try {
         console.log("ANSWERRR ",answer )
       if (!answer || answer.trim() === "") {
-        alert("PROVIDE VALID INPUT");
+        toast.warning("Please provide a valid answer!", { position: "top-center", autoClose: 2000 });
+        // alert("PROVIDE VALID INPUT");
         return;
       } else {
         const token = Cookies.get("jwt"); // Retrieve the token from cookies
-        let processedAnswer = answer.toLowerCase();
+        let processedAnswer = answer.toUpperCase();
 
         // Remove ALL spaces using a global regex
         processedAnswer = processedAnswer.replace(/\s+/g, "");
         console.log("PROCESSED ANSWER: ", processedAnswer);
         if (!processedAnswer || processedAnswer == "") {
-          alert("PROVIDE VALID INPUT");
+          // alert("PROVIDE VALID INPUT");
+          toast.warning("Please provide a valid answer!", { position: "top-center", autoClose: 2000 });
           return;
         } else {
           const res = await axios.post(
@@ -266,7 +298,8 @@ function Questionpage() {
             }
           );
           if(res.data.question === null){
-            alert(res.data.message);
+            toast.success(res.data.message, { position: "top-center", autoClose: 2000 })
+            // alert(res.data.message);
             const respo = await axios.get(
                 `${import.meta.env.VITE_BASE_URL}/api/submit`,
                 {
@@ -274,16 +307,17 @@ function Questionpage() {
                   withCredentials: true,
                 }
               );
-            if(respo.status === 200){
+            if(respo.status == 200){
                 navigate('/result');
             }
 
           }
+          toast.info(res.data.message, { position: "top-right", autoClose: 2000 });
           console.log("NEXT Response:", res.data);
           const newTimeLeft = Math.floor(res.data.timeLeft / 1000); // Convert milliseconds to seconds
           setTimeLeft(newTimeLeft);
 
-          
+          setCounter(res.data.counter+1);
 
           // if(res.data.message === "Correct Answer!"){
           setQuestion({
@@ -306,6 +340,7 @@ function Questionpage() {
         }
       }
     } catch (error) {
+      toast.error("Submission failed! Try again.", { position: "top-center", autoClose: 3000 });
       console.error(
         "Error submitting answer: ",
         error.response?.data || error.message
@@ -323,8 +358,8 @@ function Questionpage() {
 
       <div className="flex flex-col lg:flex-row w-full mt-5 ml-0 p-0 justify-evenly items-center lg:items-center">
         {/* Left Side: Question Card */}
-        <div className="w-full lg:w-[65vw] bg--300 flex flex-col justify-center mt-8 sm:mt-16 lg:mt-8">
-          <h2 className="text-[24px] text-white">
+        <div className="w-full lg:w-[60vw] bg--300 flex flex-col justify-center mt-8 sm:mt-16 lg:mt-8">
+          <h2 className="text-[32px] text-white">
             Time Remaining: {formatTime(timeLeft)}
           </h2>
 
@@ -333,18 +368,18 @@ function Questionpage() {
             textColor="#e2b3cc"
             borderColor="#451c44"
             shadowColor="black"
-            className="w-full lg:w-[65vw] sm:w-[50vw] h-auto lg:h-[50vh] flex flex-col p-4"
+            className="w-full lg:w-[100%] sm:w-[50vw] h-auto lg:h-[50vh] flex flex-col p-4"
           >
             {questions ? (
               // questions.map((q) => (
               <div
                 key={questions.question_id}
-                className="flex flex-col items-center"
+                className="flex flex-col justify-start items-center"
               >
                 <svg
                   viewBox="0 0 350 100"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-[100%] h-[30%]"
+                  className="w-[100%] h-[16%]"
                 >
                   <text
                     x="50%"
@@ -353,16 +388,18 @@ function Questionpage() {
                     textAnchor="middle"
                     fill="#e2b3cc"
                     stroke="#4a1237"
-                    strokeWidth="7"
+                    strokeWidth="5"
                     paintOrder="stroke fill"
-                    className="font-custom sm:text-[5vw] lg:text-[3vw] max-lg:text-[5vh] custom-shadow3"
+                    className="font-custom lg:text-[32px]  custom-shadow3"
                   >
-                    QUESTION {questions.question_id}
+                    QUESTION {counter}
                   </text>
                 </svg>
-                <p className="text-[3vw] sm:text-[2vw] lg:text-[2vw] text-center mt-2">
+                <div className="scroll-div h-[50%] w-full bg--900 overflow-y-auto flex justify-start items-start">
+                <p className="text-[3vw] sm:text-[2vw] lg:text-[24px] text-center mt-2 text-start ">
                   {questions.question_text}
                 </p>
+                </div>
               </div>
             ) : (
               // ))
@@ -372,15 +409,15 @@ function Questionpage() {
         </div>
 
         {/* Right Side: Score & Lifelines (Stacked) */}
-        <div className="flex flex-col lg:w-[17vw] lg:ml-5 sm:ml-0 ">
+        <div className="flex flex-col lg:w-[30vw] lg:ml-5 sm:ml-0 ">
           {/* Score Card */}
-          <div className="w-full h-auto bg-red-500" >
+          <div className="w-full h-auto bg--500" >
             <Card
               bg="#393867"
               textColor="#e2b3cc"
               borderColor="#451c44"
               shadowColor="black"
-              className="score w-full lg:w-[17vw] h-[8vh] flex  justify-center items-center shadow-black font-custom"
+              className="score w-full lg:w-[80%] h-[50px] flex  justify-center items-center shadow-black font-custom"
             >
               <svg
                 viewBox="0 0 500 100"
@@ -407,7 +444,7 @@ function Questionpage() {
               textColor="#e2b3cc"
               borderColor="#451c44"
               shadowColor="black"
-              className="score w-full lg:w-[17vw] h-[8vh] flex lg:mt-[20px] justify-center items-center shadow-black font-custom"
+              className="score w-full lg:w-[80%] h-[50px] flex lg:mt-[20px] justify-center items-center shadow-black font-custom"
             >
               <svg
                 viewBox="0 0 500 100"
@@ -432,14 +469,14 @@ function Questionpage() {
           </div>
 
           {/* Lifeline Card */}
-          <div className=" lg:mt-5 bg-green-500 ">
+          <div className=" bg--400 lg:mt-5 bg--500 w-[100%] ">
             <div>
               <Card
                 bg="#393867"
                 textColor="#e2b3cc"
                 borderColor="#451c44"
                 shadowColor="black"
-                className="score w-full lg:w-[17vw] lg:h-[37vh] sm:h-[30vh] flex-col justify-center items-center shadow-black font-custom"
+                className="score w-full lg:w-[80%] lg:h-[37vh] sm:h-[30vh] flex-col justify-center items-center shadow-black font-custom"
               >
                 <svg
                   viewBox="0 0 500 100"
@@ -455,7 +492,7 @@ function Questionpage() {
                     stroke="#4a1237"
                     strokeWidth="10"
                     paintOrder="stroke fill"
-                    className="custom-shadow3 font-normal lg:text-[4vw] max-lg:text-[2vh]"
+                    className="custom-shadow3 font-normal lg:text-[32px] max-lg:text-[2vh]"
                   >
                     LIFELINES
                   </text>
@@ -469,7 +506,7 @@ function Questionpage() {
                       textColor="#e2b3cc"
                       borderColor="#451c44"
                       shadowColor="black"
-                      className="w-[90%] h-[40px] flex items-center px-2 shadow-[#c381b5]"
+                      className="w-[90%] h-[40px] flex items-center px-2 py-[4px] shadow-[#c381b5]"
                     >
                       <svg
                         viewBox="0 0 500 100"
@@ -484,7 +521,7 @@ function Questionpage() {
                           stroke="#4a1237"
                           strokeWidth="10"
                           paintOrder="stroke fill"
-                          className="custom-shadow3 font-normal lg:text-[5vw] max-lg:text-[2vh]"
+                          className="custom-shadow3 font-normal lg:text-[40px] max-lg:text-[2vh]"
                         >
                           {lifeline.title}
                         </text>
@@ -576,7 +613,7 @@ function Questionpage() {
       </div>
 
       {/* Inputs & Submit Section */}
-      <div className="w-full flex flex-col lg:flex-row items-center justify-start mt-5 lg:mt-10 gap-4">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-center  gap-4 bg--500">
         {
           questions && (
             // questions.slice(0,1).map((q) => (
@@ -591,8 +628,8 @@ function Questionpage() {
                 textColor="#e2b3cc"
                 borderColor="#451c44"
                 shadowColor="black"
-                className="w-full lg:w-[37%] h-[7.5vh] font-custom text-center"
-                placeholder="INPUT 1"
+                className="w-full lg:w-[400px] h-[60px] font-custom text-center flex justify-center items-center"
+                placeholder="INPUT"
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
                 disabled={input1Disabled}
@@ -619,7 +656,7 @@ function Questionpage() {
                 textColor="#e2b3cc"
                 borderColor="#451c44"
                 shadowColor="black"
-                className=" shadow-[#451c44]  w-full lg:w-[10vw] h-[7.5vh] flex justify-center"
+                className=" shadow-[#451c44] lg:w-[10vw] h-[50px] flex justify-center"
                 onClick={() => handleSubmit(answer, questions.question_id)}
               >
                 <svg
@@ -647,6 +684,7 @@ function Questionpage() {
           // ))
         }
       </div>
+      <ToastContainer />
     </>
   );
 }

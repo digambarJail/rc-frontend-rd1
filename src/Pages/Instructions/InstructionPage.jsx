@@ -6,10 +6,25 @@ import "./InstructionStyles.css";
 const InstructionPage = () => {
   const [showNext, setShowNext] = useState(false);
   const navigate = useNavigate(); // Initialize navigate function
+  // const onProceedClick = () => {
 
+    const [instructions, setInstructions] = useState([
+      {
+        id: 1,
+        title: "Participants are allowed only one login session. Multiple logins are not permitted.",
+      },
+      {
+        id: 1,
+        title: "Participants are allowed only one login session. Multiple logins are not permitted.",
+      },
+      {
+        id: 1,
+        title: "Participants are allowed only one login session. Multiple logins are not permitted.",
+      },
+    ]);
   return (
     <div className="instr-container">
-      <h2 className="main-title">INSTRUCTIONS</h2>
+      <h2 className="main-title">{showNext ? "LIFELINES" : "INSTRUCTIONS" }</h2>
 
       {/* Card Container */}
       <div className="card-container">
@@ -25,8 +40,7 @@ const InstructionPage = () => {
               {/* <img src="src/assets/shield.png" alt="shield" className="card-icon" /> */}
               <h3 className="card-title">#1</h3>
               <p className="card-content">
-                Participants are allowed only one login session. Multiple logins
-                are not permitted.
+              Participants are allowed to take a 30-minute test within the designated time window, with the contest running from 8:00 PM to 11:00 PM.
               </p>
             </Card>
 
@@ -39,8 +53,7 @@ const InstructionPage = () => {
               {/* <img src="src/assets/electronic.png" alt="electronic" className="card-icon" /> */}
               <h3 className="card-title">#2</h3>
               <p className="card-content">
-                The contest will run from 6 PM to 7:30 PM, lasting for a
-                duration of 1.5 hours.
+              The marking scheme awards +5 points for each correct submission and -2 points for each incorrect submission. Participants are allowed **up to 2 attempts** to answer a question.
               </p>
             </Card>
 
@@ -53,9 +66,7 @@ const InstructionPage = () => {
               {/* <img src="src/assets/notepad.png" alt="notepad" className="card-icon" /> */}
               <h3 className="card-title">#3</h3>
               <p className="card-content">
-                All questions are available in the Question Hub. Additionally,
-                the correct submission percentage of all the participants for
-                each question is displayed.
+              Participants are permitted to use each lifeline only once during the test. Using a lifeline will reset the streak.
               </p>
             </Card>
           </>
@@ -73,10 +84,9 @@ const InstructionPage = () => {
                 alt="time"
                 className="card-icon"
               /> */}
-              <h3 className="card-title">#4</h3>
+              <h3 className="card-title">SKIP</h3>
               <p className="card-content">
-                Participants must submit their solutions before the contest
-                ends. Late submissions will not be accepted.
+              Activated after 3 consecutive correct answers, allowing you to skip the current question without penalty.
               </p>
             </Card>
 
@@ -91,10 +101,9 @@ const InstructionPage = () => {
                 alt="rules"
                 className="card-icon"
               /> */}
-              <h3 className="card-title">#5</h3>
+              <h3 className="card-title">TIME BOOST</h3>
               <p className="card-content">
-                Plagiarism in code submissions will result in immediate
-                disqualification.
+              Activated after a streak of 4 correct answers, this lifeline adds 2 extra minutes to your timer.
               </p>
             </Card>
 
@@ -109,10 +118,9 @@ const InstructionPage = () => {
                 alt="warning"
                 className="card-icon"
               /> */}
-              <h3 className="card-title">#6</h3>
+              <h3 className="card-title">DOUBLE UP</h3>
               <p className="card-content">
-                Participants should refrain from any form of discussion about
-                contest problems outside the official discussion forum.
+              Activated after a streak of 5 correct answers, this lifeline doubles your score for a correct answer, with no penalty for a wrong attempt.
               </p>
             </Card>
           </>
@@ -147,7 +155,7 @@ const InstructionPage = () => {
               textColor="rgba(238, 140, 174, 1)"
               borderColor="rgba(238, 140, 174, 1)"
               className="next-buttons"
-              // onClick={() => navigate("/lifelines")} // Navigate to NewPage
+              onClick={() => navigate("/questions")} // Navigate to NewPage
             >
               Proceed
             </Button>

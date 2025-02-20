@@ -64,7 +64,7 @@ const ResultPage = () => {
     }, []);
   
     return (
-      <div className="container">
+      <div className="result-container">
         <div className="headingresult">
           <h1>RESULT</h1>
         </div>
@@ -91,7 +91,7 @@ const ResultPage = () => {
                     </p>
                   </div>
                   <a className="feedback-text" href="">
-                    <Button
+                    {/* <Button
                       bg="#CA5F93"
                       textColor="#FFDAB3"
                       borderColor="#4a1237"
@@ -99,7 +99,7 @@ const ResultPage = () => {
                       className="feedbackBtn"
                     >
                       FEEDBACK
-                    </Button>
+                    </Button> */}
                   </a>
                 </div>
               </Card>

@@ -1,5 +1,5 @@
 .result-container{
-    height: 100vh;
+    height: 90vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     align-items: center;
     flex-wrap: wrap;
     /* background-color: red; */
-  background-color: #1A1B41;
+  /* background-color: #1A1B41; */
 
 }
 

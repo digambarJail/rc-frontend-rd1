@@ -8,7 +8,7 @@
   justify-content: center;
   align-items: center;
   /* background-color: purple; */
-  background-color: #1A1B41;
+  /* background-color: #1A1B41; */
 
 
 }
@@ -42,7 +42,7 @@
 }
 
 .player-card {
-  background-color: #240024;
+  background-color: #1A1B41;
   border: 2px solid #ff81be;
   border-radius: 12px;
   padding: 15px;
@@ -113,7 +113,7 @@
   height: 90%;
   width: 50%;
   /* background-color: #EC841C; */
-  background-color: #240024;
+  background-color: #1A1B41;
 
   border: 2px solid #CA5F93;
   border-radius: 15px;

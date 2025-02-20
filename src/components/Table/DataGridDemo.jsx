@@ -11,7 +11,7 @@ const columns = [
 
 export default function DataGridDemo({ rows = [] }) {
   return (
-    <Box sx={{ height: 300, width: '100%' }}>
+    <Box sx={{ height: 450, width: '100%' }}>
       <DataGrid
         rows={rows} // Ensure rows is always an array
         columns={columns}

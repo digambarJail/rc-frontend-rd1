@@ -8,11 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { authUser, notAuthUser } from "../redux/slices/authSlice";
 import { Input } from "pixel-retroui";
 
-
 function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   axios.defaults.withCredentials = true;
 
@@ -20,6 +18,9 @@ function LoginPage() {
     username: "",
     password: "",
   });
+
+  const [userType, setUserType] = useState("individual");
+  
 
   const addData = (e) => {
     const { name, value } = e.target;
@@ -38,13 +39,13 @@ function LoginPage() {
         logData,
         { withCredentials: true }
       );
-      toast.success("Login Successful!", { position: "top-center" });
+      toast.success("Login Successful!", { position: "top-center", autoClose: 2000 });
       console.log(res.data);
 
       dispatch(authUser());
       navigate("/instructions"); // Navigate after successful login
     } catch (err) {
-      toast.warning("Invalid Username or Password", { position: "top-center" });
+      toast.warning("Invalid Username or Password", { position: "top-center", autoClose: 3000 });
       dispatch(notAuthUser());
     }
   };
@@ -52,50 +53,32 @@ function LoginPage() {
   return (
     <>
       <div className="login-form h-[90vh] w-full bg--800 flex justify-center items-center ">
-        <form className="form-login h-[80%] w-[30%] -[#181818] flex flex-col justify-center items-center gap-[20px]  ">
+        <form className="form-login h-[80%] w-[30%] -[#181818] flex flex-col justify-center items-center gap-[20px]">
           <h1 className="login-text max-md:text-[8vw] text-[#CA5F93] font-bold text-[70px]">
             LOGIN
           </h1>
 
-          <div className="input-boxes h-[30%] w-full bg--500 flex flex-col justify-evenly items-center ">
-            {/* <input
-              onChange={addData}
-              value={logData.email}
-              className=" text-white rounded-full outline-none w-[80%] max-md:w-[80vw] px-[2vw] py-[2vh] max-md:px-[6vw] bg-zinc-800 "
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-            /> */}
+          <div className="input-boxes h-[30%] w-full bg--500 flex flex-col justify-evenly items-center">
             <Input
               bg="#000"
               textColor="white"
               borderColor="#CA5F93"
               onChange={addData}
               value={logData.username}
-              className=" text-white outline-none w-[80%] max-md:w-[80vw] px-[1vw] py-[0vh] max-md:px-[6vw] "
+              className=" text-white outline-none w-[80%] max-md:w-[80vw] px-[1vw] py-[0vh] max-md:px-[6vw]"
               id="username"
               name="username"
               type="text"
-              placeholder="Username"
+              placeholder={userType === "team" ? "Team Name" : "Username"}
             />
 
-            {/* <input
-              onChange={addData}
-              value={logData.password}
-              className=" text-white rounded-full outline-none w-[80%] max-md:px-[6vw] max-md:w-[80vw]  px-[2vw] py-[2vh] bg-zinc-800 "
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Password"
-            /> */}
             <Input
               bg="#000"
               textColor="white"
               borderColor="#CA5F93"
               onChange={addData}
               value={logData.password}
-              className=" text-white outline-none w-[80%] max-md:w-[80vw] px-[1vw] py-[0vh] max-md:px-[6vw] "
+              className=" text-white outline-none w-[80%] max-md:w-[80vw] px-[1vw] py-[0vh] max-md:px-[6vw]"
               id="password"
               name="password"
               type="password"
@@ -103,12 +86,32 @@ function LoginPage() {
             />
           </div>
 
-          {/* <button
-            onClick={logUser}
-            className=" w-[360px] max-lg:w-[200px] px-[2vw] py-[1vh] text-white bg-[#8A72FF] border-[1px]  hover:bg-transparent  hover:bg-[#5840d0]font-bold rounded-full "
-          >
-            Login
-          </button> */}
+          {/* User Type Selection */}
+          <div className="user-options py-[5px] w-full flex justify-center gap-10 text-white text-[30px]">
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="radio"
+                name="userType"
+                value="individual"
+                checked={userType === "individual"}
+                onChange={() => setUserType("individual")}
+                className="mr-2"
+              />
+              Individual
+            </label>
+
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="radio"
+                name="userType"
+                value="team"
+                checked={userType === "team"}
+                onChange={() => setUserType("team")}
+                className="mr-2"
+              />
+              Team
+            </label>
+          </div>
 
           <Button
             bg="#CA5F93"
@@ -116,12 +119,15 @@ function LoginPage() {
             borderColor="#4A1237"
             shadow="#4A1237"
             onClick={logUser}
-             className=" w-[360px] max-lg:w-[200px] px-[2vw] py-[0.5vh]   font-bold  "
+            className=" w-[360px] max-lg:w-[200px] px-[2vw] py-[0.5vh] font-bold"
           >
             LOGIN
           </Button>
         </form>
       </div>
+
+      {/* Toast container for notifications */}
+      <ToastContainer />
     </>
   );
 }

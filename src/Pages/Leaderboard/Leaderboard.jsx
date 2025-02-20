@@ -88,32 +88,7 @@ const Leaderboard = () => {
         <h1 className="leaderboard-title">LEADERBOARD</h1>
 
         <div className="leaderboard-content">
-          <div className="top-players">
-            {topPlayers.map((player, index) => (
-              <div key={index} className="player-card">
-                <div className="medal">
-                  {index === 0 && "🥇"}
-                  {index === 1 && "🥈"}
-                  {index === 2 && "🥉"}
-                </div>
-                <div className="player-info">
-                  <div className="username">{player.username}</div>
-                  <div className="stats-container">
-                    <div className="stats-row">
-                      <div className="stats-label">QUESTIONS SOLVED</div>
-                      <div className="stats-value">
-                        {player.questionsSolved}
-                      </div>
-                    </div>
-                    <div className="stats-row">
-                      <div className="stats-label">ACCURACY</div>
-                      <div className="stats-value">{player.accuracy}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          
 
           <div className="players-list h-[90%] bg--500">
             {

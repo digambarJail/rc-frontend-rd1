@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 import { Card } from "pixel-retroui";
+// import { navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import "../index.css";
 
 
@@ -11,6 +13,7 @@ function Lifelines() {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedLifeline, setSelectedLifeline] = useState(null);
 
+    const navigate = useNavigate(); // Initialize navigate function
     // Lifeline Information
     const [lifelines, setLifelines] = useState([
         { id: 1, title: "Skip", description: "You can skip the question.", endpoint: "lifeline1" },
@@ -124,6 +127,12 @@ function Lifelines() {
                     </div>
                 </div>
             )}
+
+            <button
+            onClick={() => navigate("/questions")} // Navigate to NewPage
+             className="border-2 px-[2vw] py-[1vh] " >
+               <h1 className="text-xl">Proceed</h1>
+            </button>
 
 
         </div>
