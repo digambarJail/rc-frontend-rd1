@@ -8,13 +8,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { authUser, notAuthUser } from "../redux/slices/authSlice";
 import { Input } from "pixel-retroui";
 
+
 function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+
   axios.defaults.withCredentials = true;
 
   const [logData, setLogData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -31,7 +34,7 @@ function LoginPage() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/auth/login`,
+        `${import.meta.env.VITE_BASE_URl}/auth/login`,
         logData,
         { withCredentials: true }
       );
@@ -39,7 +42,7 @@ function LoginPage() {
       console.log(res.data);
 
       dispatch(authUser());
-      navigate("/dashboard"); // Navigate after successful login
+      navigate("/instructions"); // Navigate after successful login
     } catch (err) {
       toast.warning("Invalid Username or Password", { position: "top-center" });
       dispatch(notAuthUser());
@@ -69,12 +72,12 @@ function LoginPage() {
               textColor="white"
               borderColor="#CA5F93"
               onChange={addData}
-              value={logData.username}
+              value={logData.email}
               className=" text-white outline-none w-[80%] max-md:w-[80vw] px-[1vw] py-[0vh] max-md:px-[6vw] "
-              id="username"
-              name="username"
-              type="username"
-              placeholder="Username"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Email"
             />
 
             {/* <input

@@ -1,0 +1,9 @@
+.even-row {
+    background-color: #1e1e1e; /* Dark background */
+    color: white; /* Text color */
+  }
+  
+  .odd-row {
+    background-color: #333; /* Slightly lighter */
+    color: white;
+  }

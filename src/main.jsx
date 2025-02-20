@@ -20,27 +20,29 @@ import InstructionPage from './Pages/Instructions/InstructionPage.jsx';
 import Leaderboard from './Pages/Leaderboard/Leaderboard.jsx';
 import ResultPage from './Pages/Result/ResultPage.jsx';
 import QuestionPage from './Pages/Questions/QuestionPage.jsx';
-import LifelinesPage from './Pages/Lifelines/LifelinesPage.jsx';
+import Lifelines from './components/Lifelines/Lifelines.jsx';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      
+
+
+      <Route element={<PrivateRoutes/>} >
+      {/* <Route path="/leaderboard" element={<LeaderBoard />} />
+      <Route path="/questions" element={<Questions />} /> */}
       <Route path="/instructions" element={<InstructionPage />} />
       <Route path="/questions" element={<QuestionPage />} />
 
-      <Route path="/lifelines" element={<LifelinesPage />} />
+      <Route path="/lifelines" element={<Lifelines />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
       <Route path="/result" element={<ResultPage />} />
       
 
-
-      {/* <Route element={<PrivateRoutes/>} > */}
-      {/* <Route path="/leaderboard" element={<LeaderBoard />} />
-      <Route path="/questions" element={<Questions />} /> */}
-
-      {/* </Route> */}
+      </Route>
     </Route>
   )
 );

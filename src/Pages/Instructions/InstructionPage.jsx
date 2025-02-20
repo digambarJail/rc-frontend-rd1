@@ -147,11 +147,10 @@ const InstructionPage = () => {
               textColor="rgba(238, 140, 174, 1)"
               borderColor="rgba(238, 140, 174, 1)"
               className="next-buttons"
-              onClick={() => navigate("/lifelines")} // Navigate to NewPage
+              // onClick={() => navigate("/lifelines")} // Navigate to NewPage
             >
               Proceed
             </Button>
-            
           </div>
         ) : (
           <Button

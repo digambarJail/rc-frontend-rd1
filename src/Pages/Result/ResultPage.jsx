@@ -41,13 +41,13 @@ const ResultPage = () => {
     useEffect(() => {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/submit`,{withCredentials:true});
-          console.log("response",reponse)
+          const response = await axios.get(`${import.meta.env.VITE_BASE_URl}/api/submit`,{withCredentials:true});
+          console.log("response",response);
           const data = response.data;
           console.log("data",data)
           setUserData({
-            username: data.currentUser,
-            email: data.email,
+            username: data.currentUser.username,
+            email: data.currentUser.email,
             rank: data.rank, 
             score: data.score,
             attemptedQuestions: data.totalAttemptedQuestionCount,
@@ -175,7 +175,7 @@ const ResultPage = () => {
                   </div>
                   <div className="accuracy-right">
                     <div className="accuracy-num">
-                      <p>{userData.accuracy || "50%"}</p>
+                      <p>{Math.round(userData.accuracy * 100) / 100|| "50%"}</p>
                     </div>
                   </div>
                 </Card>
