@@ -15,7 +15,7 @@
 
 .leaderboard-title {
   font-size: 2.5rem;
-  color: #FFF546;
+  color: #CA5F93;
   /* background-color: green; */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -175,7 +175,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr 1.5fr 1fr;
   gap: 20px;
-  color: #FFF546;
+  color: #CA5F93;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

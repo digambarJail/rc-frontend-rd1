@@ -70,11 +70,7 @@ const Leaderboard = () => {
     getLeaderboard();
   }, []);
 
-  const topPlayers = [
-    { rank: 1, username: "POSIDON_33", questionsSolved: 10, accuracy: "90%" },
-    { rank: 2, username: "POSIDON_23", questionsSolved: 10, accuracy: "90%" },
-    { rank: 3, username: "POSIDON_33", questionsSolved: 10, accuracy: "90%" },
-  ];
+
 
   const selectedLeaderboard = leaderboardData[category] || [];
 
