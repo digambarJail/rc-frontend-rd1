@@ -20,7 +20,7 @@ function Lifelines() {
 
     const handleLifelineUse = async (endpoint) => {
         try {
-            const response = await fetch(`http://localhost:5000/${endpoint}`, {
+            const response = await fetch(`import.meta.env.VITE_BASE_URL/${endpoint}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" }
             });
